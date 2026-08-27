@@ -2,9 +2,8 @@ import express from 'express'
 
 const app = express();
 
-app.get('/', (res, req) => {
-    req.send("dede")
-
+app.get('/', (req, res) => {
+    res.send("dede")
 });
 
 app.get("/livros", function(pergunta, resposta) {
