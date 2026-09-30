@@ -1,0 +1,3 @@
+const lista = {nome: "Victor", idade: 10}
+
+const {nome, idade } = lista;
