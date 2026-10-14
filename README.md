@@ -1,27 +1,89 @@
-# BackEND — Estudos e Exercícios
+# BackEND
 
-Repositório usado para armazenar e organizar códigos desenvolvidos durante aulas e estudos de **backend**.
+Repository for backend studies and exercises.
 
-## Conteúdo
+## Folder structure
 
-| Pasta | Descrição |
-|-------|-----------|
-| `js-basico/` | Exercícios e práticas de JavaScript básico |
-| `minha primeira api/` | Primeira API em Node.js (estudos) |
+| Folder | What is inside |
+|--------|----------------|
+| `js-basico/` | Basic JavaScript exercises and practice files |
+| `minha primeira api/` | First API with Node.js and Express (books API) |
 
-> **Nota:** Este repositório contém material de aprendizado. A pasta `node_modules` não deveria estar versionada (já está no `.gitignore`). Se você clonar, rode `npm install` dentro da pasta da API.
+### Inside `minha primeira api/`
 
-## Objetivo
+| Folder / File | What it does |
+|---------------|--------------|
+| `controllers/` | Functions that handle the book logic |
+| `routes/` | Defines the API routes |
+| `middlewares/` | Code that runs before the routes (request log) |
+| `index.js` | Starts the server |
+| `package.json` | Project settings and dependencies |
 
-- Praticar conceitos de backend
-- Registrar evolução dos estudos
-- Servir de referência pessoal
+## How to run the API
 
-## Tecnologias usadas
+1. Go to the API folder:
+```bash
+cd "minha primeira api"
+```
 
-- JavaScript / Node.js
-- Express (na API de estudos)
+2. Install dependencies:
+```bash
+npm install
+```
 
----
+3. Start the server:
+```bash
+npm run dev
+```
 
-**Victor Machado** — [@VictorHUBy](https://github.com/VictorHUBy)
+The server runs on port 3000.
+
+## Technologies
+
+- Node.js
+- Express 5.2.1
+- Nodemon 3.1.14 (for development)
+
+## Available scripts
+
+- `npm start` → runs with Node
+- `npm run dev` → runs with Nodemon (restarts on changes)
+
+## API Routes (books)
+
+Base path: `/livros`
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/livros` | List all books |
+| GET | `/livros/emprestimosStatus` | List only available books |
+| GET | `/livros/:id` | Get one book by id |
+| POST | `/livros` | Create a new book |
+| PATCH | `/livros/emprestimosStatus/:id` | Borrow a book |
+| PATCH | `/livros/devolver/:id` | Return a book |
+| PATCH | `/livros/:id` | Update title and/or author (partial) |
+| PUT | `/livros/:id` | Update title and author (full) |
+| DELETE | `/livros/:id` | Delete a book |
+
+## Request examples
+
+**1. List all books**
+```
+GET http://localhost:3000/livros
+```
+
+**2. Create a book**
+```
+POST http://localhost:3000/livros
+Content-Type: application/json
+
+{
+  "dsTitulo": "O Senhor dos Anéis",
+  "dsAutor": "J. R. R. Tolkien"
+}
+```
+
+**3. Borrow a book**
+```
+PATCH http://localhost:3000/livros/emprestimosStatus/1
+```
