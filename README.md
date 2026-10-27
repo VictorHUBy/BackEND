@@ -1,89 +1,64 @@
 # BackEND
 
-Repository for backend studies and exercises.
+Repositório de estudos e exercícios de desenvolvimento backend.
 
-## Folder structure
+## Estrutura
 
-| Folder | What is inside |
-|--------|----------------|
-| `js-basico/` | Basic JavaScript exercises and practice files |
-| `minha primeira api/` | First API with Node.js and Express (books API) |
+| Pasta | Conteúdo |
+|---|---|
+| `js-basico/` | Exercícios e práticas de JavaScript básico |
+| `minha primeira api/` | API de livros feita com Node.js e Express |
 
-### Inside `minha primeira api/`
+Dentro de `minha primeira api/`:
+- `controllers/`: lógica de manipulação dos livros.
+- `routes/`: definição das rotas da API.
+- `middlewares/`: funções executadas antes das rotas.
+- `index.js`: inicialização do servidor.
+- `package.json`: dependências e comandos do projeto.
 
-| Folder / File | What it does |
-|---------------|--------------|
-| `controllers/` | Functions that handle the book logic |
-| `routes/` | Defines the API routes |
-| `middlewares/` | Code that runs before the routes (request log) |
-| `index.js` | Starts the server |
-| `package.json` | Project settings and dependencies |
+## Tecnologias
 
-## How to run the API
+As dependências declaradas no `package.json` da API incluem Express e Nodemon. O projeto usa JavaScript com módulos ES.
 
-1. Go to the API folder:
+## Como executar a API
+
+No terminal, entre na pasta do projeto:
+
 ```bash
 cd "minha primeira api"
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start the server:
-```bash
 npm run dev
 ```
 
-The server runs on port 3000.
+O servidor usa a porta 3000. O comando `npm run dev` inicia o servidor com Nodemon; `npm start` executa `node index.js`.
 
-## Technologies
+## Rotas da API de livros
 
-- Node.js
-- Express 5.2.1
-- Nodemon 3.1.14 (for development)
+Base: `/livros`
 
-## Available scripts
+| Método | Rota | Finalidade |
+|---|---|---|
+| GET | `/livros` | Lista os livros |
+| GET | `/livros/emprestimosStatus` | Lista os livros disponíveis |
+| GET | `/livros/:id` | Busca um livro por ID |
+| POST | `/livros` | Cadastra um livro |
+| PATCH | `/livros/emprestimosStatus/:id` | Empresta um livro |
+| PATCH | `/livros/devolver/:id` | Registra a devolução |
+| PATCH | `/livros/:id` | Atualiza parcialmente um livro |
+| PUT | `/livros/:id` | Atualiza um livro |
+| DELETE | `/livros/:id` | Exclui um livro |
 
-- `npm start` → runs with Node
-- `npm run dev` → runs with Nodemon (restarts on changes)
+### Exemplo de cadastro
 
-## API Routes (books)
+Envie uma requisição `POST` para `http://localhost:3000/livros` com o cabeçalho `Content-Type: application/json` e o corpo:
 
-Base path: `/livros`
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/livros` | List all books |
-| GET | `/livros/emprestimosStatus` | List only available books |
-| GET | `/livros/:id` | Get one book by id |
-| POST | `/livros` | Create a new book |
-| PATCH | `/livros/emprestimosStatus/:id` | Borrow a book |
-| PATCH | `/livros/devolver/:id` | Return a book |
-| PATCH | `/livros/:id` | Update title and/or author (partial) |
-| PUT | `/livros/:id` | Update title and author (full) |
-| DELETE | `/livros/:id` | Delete a book |
-
-## Request examples
-
-**1. List all books**
-```
-GET http://localhost:3000/livros
-```
-
-**2. Create a book**
-```
-POST http://localhost:3000/livros
-Content-Type: application/json
-
+```json
 {
   "dsTitulo": "O Senhor dos Anéis",
   "dsAutor": "J. R. R. Tolkien"
 }
 ```
 
-**3. Borrow a book**
-```
-PATCH http://localhost:3000/livros/emprestimosStatus/1
-```
+Os livros são armazenados em um array no código, portanto os dados não são persistidos em um banco de dados.
+
+[ADICIONAR PRINT AQUI]
